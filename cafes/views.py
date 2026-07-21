@@ -2,12 +2,13 @@ from django.shortcuts import render
 
 # Create your views here.
 from rest_framework import viewsets
-from .models import Cafe
+from .models import Cafe, Review
 from .models import Barrio
 from .models import Reviewer
 from .serializer import CafeSerializer
 from .serializer import BarrioSerializer
 from .serializer import ReviewerSerializer
+from .serializer import ReviewModelSerializer
 
 class CafeViewSet(viewsets.ModelViewSet):
         # 1. queryset: Defines the collection of objects that this
@@ -38,3 +39,8 @@ class ReviewerViewSet(viewsets.ModelViewSet):
         # 2. serializer_class: Tells the viewset which serializer to use
         #    when converting the Cafe objects to JSON.
         serializer_class = ReviewerSerializer
+
+class ReviewViewSet(viewsets.ModelViewSet):
+        queryset = Review.objects.all().order_by('id')
+        serializer_class = ReviewModelSerializer
+

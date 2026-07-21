@@ -40,6 +40,15 @@ class Reviewer(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.join_date})"
+    
+class Review(models.Model):
+    cafe = models.ForeignKey(Cafe, on_delete=models.CASCADE, related_name='cafes')
+    reviewer = models.ForeignKey(Reviewer, on_delete=models.CASCADE, related_name='reviews')
+    comment = models.TextField(blank=True)
+    rating = models.IntegerField(
+        validators = [MinValueValidator(1), MaxValueValidator(5)]
+    )
+    
 
 
 
