@@ -9,7 +9,7 @@ from .serializer import CafeSerializer
 from .serializer import BarrioSerializer
 from .serializer import ReviewerSerializer
 
-class CafeViewSet(viewsets.ReadOnlyModelViewSet):
+class CafeViewSet(viewsets.ModelViewSet):
         # 1. queryset: Defines the collection of objects that this
         #    viewset will operate on. We'll get all cafes, ordered by rating.
 
@@ -21,7 +21,7 @@ class CafeViewSet(viewsets.ReadOnlyModelViewSet):
             
 
 
-class BarrioViewSet(viewsets.ReadOnlyModelViewSet):
+class BarrioViewSet(viewsets.ModelViewSet):
         # 1. queryset: Defines the collection of objects that this
         #    viewset will operate on. We'll get all cafes, ordered by rating.
         queryset = Barrio.objects.all().order_by('name')
@@ -30,7 +30,7 @@ class BarrioViewSet(viewsets.ReadOnlyModelViewSet):
         #    when converting the Cafe objects to JSON.
         serializer_class = BarrioSerializer
 
-class ReviewerViewSet(viewsets.ReadOnlyModelViewSet):
+class ReviewerViewSet(viewsets.ModelViewSet):
         # 1. queryset: Defines the collection of objects that this
         #    viewset will operate on. We'll get all cafes, ordered by rating.
         queryset = Reviewer.objects.all().order_by('name')
